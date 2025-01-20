@@ -1,0 +1,76 @@
+/* 전체 페이지 기본 설정 */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* 스크롤 방지 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black; /* 깜빡거림 시 검정 배경 */
+}
+
+/* 배경 이미지 공통 설정 */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    transition: opacity 0.5s ease, transform 3s ease;
+}
+
+/* 첫 번째 배경 */
+.background.first {
+    background: url('IMG_1531.JPG') no-repeat center center; /* 첫 번째 배경 이미지 */
+    animation: zoomEffectFirst 5s ease-out forwards, blinkEffect 2s 5s forwards;
+}
+
+/* 두 번째 배경 */
+.background.second {
+    background: url('IMG_1537.PNG') no-repeat center center; /* 두 번째 배경 이미지 */
+    opacity: 0; /* 처음에는 숨김 */
+    transform: scale(1); /* 초기 크기 */
+    animation: zoomEffectSecond 5s ease-out forwards, blinkEffect 2s 7s forwards; /* 확대 후 깜빡임 */
+}
+
+/* 숨김 처리 */
+.hidden {
+    display: none;
+}
+
+/* 첫 번째 확대 애니메이션 */
+@keyframes zoomEffectFirst {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(2.0); /* 2배 확대 */
+    }
+}
+
+/* 두 번째 확대 애니메이션 */
+@keyframes zoomEffectSecond {
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(2.0);
+        opacity: 1;
+    }
+}
+
+/* 깜빡거림 효과 */
+@keyframes blinkEffect {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
