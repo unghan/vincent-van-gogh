@@ -1,0 +1,115 @@
+/* 전체 페이지 기본 설정 */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* 스크롤 방지 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black; /* 기본 배경 */
+}
+
+/* 컨테이너 설정 */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer; /* 클릭 가능한 커서 */
+}
+
+/* 배경 이미지 */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('background.jpg') no-repeat center center; /* 배경 이미지 */
+    background-size: cover;
+    z-index: 1;
+}
+
+/* 어둡게 만드는 레이어 */
+.dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 어두운 반투명 레이어 */
+    z-index: 2;
+}
+
+/* 램프 조명 */
+.lamp {
+    position: absolute;
+    top: 18%; /* 램프 위치 */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url('lamp.png') no-repeat center center; /* 램프 이미지 */
+    background-size: contain; /* 원본 크기 유지 */
+    width: auto;
+    height: auto;
+    max-width: 200px; /* 램프 이미지 크기 조정 */
+    z-index: 4; /* 조명이 다른 요소 위에 표시되도록 */
+    animation: flicker 2.5s infinite; /* 조명 깜빡임 */
+}
+
+/* 동그란 빛 방사 효과 */
+.light-circle {
+    position: absolute;
+    top: 20%; /* 빛의 중심 위치 */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; /* 방사형 빛의 크기 */
+    height: 300px; /* 방사형 빛의 크기 */
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 200, 0.6) 0%, /* 중심 빛 */
+        rgba(255, 255, 150, 0.3) 50%, /* 중간 빛 */
+        rgba(0, 0, 0, 0) 100% /* 빛의 끝 */
+    );
+    opacity: 0.8; /* 초기 투명도 */
+    animation: lightPulse 4s infinite alternate; /* 빛의 부드러운 확장 */
+    z-index: 3; /* 조명이 안개 위에 표시되도록 */
+}
+
+/* 안개 효과 */
+.fog {
+    position: absolute;
+    top: -10%; /* 화면을 넘어가도록 설정 */
+    left: -10%;
+    width: 120%; /* 화면을 넘어 퍼지게 설정 */
+    height: 120%;
+    background: url('fog.png') no-repeat center center; /* 안개 이미지 */
+    background-size: cover;
+    opacity: 0.6; /* 진한 안개 */
+    animation: moveFog 15s linear infinite; /* 안개 움직임 */
+    z-index: 2;
+}
+
+/* 깜빡임 효과 (램프) */
+@keyframes flicker {
+    0%, 100% {
+        opacity: 1; /* 완전히 보임 */
+    }
+    50% {
+        opacity: 0.7; /* 약간 어두워짐 */
+    }
+}
+
+/* 안개 움직임 효과 */
+@keyframes moveFog {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(10%, 10%);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
